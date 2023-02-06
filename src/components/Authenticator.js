@@ -13,10 +13,10 @@ export default function Authenticator ({ children }) {
   if (submitted) {
     return (
       <div>
-        <h1 className='near-white'>Verify your email address!</h1>
-        <p>Click the link in the email we sent to {email} to sign in.</p>
+        <h1 className='near-white'>Verifique seu email!</h1>
+        <p>Clique no link enviado para o email: {email} fazer login.</p>
         <form onSubmit={e => { e.preventDefault(); cancelRegisterSpace() }}>
-          <button type='submit' className='ph3 pv2'>Cancel</button>
+          <button type='submit' className='ph3 pv2'>Cancelar</button>
         </form>
       </div>
     )
@@ -29,7 +29,7 @@ export default function Authenticator ({ children }) {
       await createSpace()
       await registerSpace(email)
     } catch (err) {
-      throw new Error('failed to register', { cause: err })
+      throw new Error('Falha no Login', { cause: err })
     } finally {
       setSubmitted(false)
     }
@@ -38,10 +38,10 @@ export default function Authenticator ({ children }) {
   return (
     <form onSubmit={handleRegisterSubmit}>
       <div className='mb3'>
-        <label htmlFor='email' className='db mb2'>Email address:</label>
+        <label htmlFor='email' className='db mb2'>Digite seu Email:</label>
         <input id='email' className='db pa2 w-100' type='email' value={email} onChange={e => setEmail(e.target.value)} required />
       </div>
-      <button type='submit' className='ph3 pv2' disabled={submitted}>Register</button>
+      <button type='submit' className='ph3 pv2' disabled={submitted}>LOGIN</button>
     </form>
   )
 }

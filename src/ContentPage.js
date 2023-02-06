@@ -50,7 +50,7 @@ export function ContentPage () {
       </div>
       <div className='mb3'>
         <label>
-          <input type='checkbox' value={allowDirectory} onChange={e => setAllowDirectory(e.target.checked)} /> Allow directory selection
+          <input type='checkbox' value={allowDirectory} onChange={e => setAllowDirectory(e.target.checked)} /> Selecione para fazer upload de uma pasta inteira!
         </label>
       </div>
       {files.length === 1
@@ -62,7 +62,7 @@ export function ContentPage () {
           </div>
           )
         : null}
-      <button type='submit' className='ph3 pv2'>Upload</button>
+      <button type='submit' className='ph3 pv2'>UPLOAD</button>
     </form>
   )
 }
@@ -71,7 +71,7 @@ const Uploading = ({ files, storedDAGShards }) => (
   <div className='flex items-center'>
     <div className='spinner mr3 flex-none' />
     <div className='flex-auto'>
-      <p className='truncate'>Uploading DAG for {files.length > 1 ? `${files.length} files` : files[0].name}</p>
+      <p className='truncate'>Upando em partes para: {files[0].name}</p>
       {storedDAGShards.map(({ cid, size }) => (
         <p key={cid.toString()} className='f7 truncate'>
           {cid.toString()} ({size} bytes)
@@ -83,22 +83,19 @@ const Uploading = ({ files, storedDAGShards }) => (
 
 const Errored = ({ error }) => (
   <div>
-    <h1 className='near-white'>⚠️ Error: failed to upload file(s): {error.message}</h1>
-    <p>Check the browser console for details.</p>
+    <h1 className='near-white'>⚠️ Error: Falha em fazer o upload dos arquivo(s): {error.message}</h1>
+    <p>Cheque o console para mais informação.</p>
   </div>
 )
 
 const Done = ({ files, dataCid, storedDAGShards }) => (
   <div>
-    <h1 className='near-white'>Done!</h1>
-    <p className='f6 code truncate'>{dataCid.toString()}</p>
-    <p><a href={`https://w3s.link/ipfs/${dataCid}`} className='blue'>View {files.length > 1 ? 'files' : files[0].name} on IPFS Gateway.</a></p>
-    <p className='near-white'>Chunks ({storedDAGShards.length}):</p>
-    {storedDAGShards.map(({ cid, size }) => (
-      <p key={cid.toString()} className='f7 truncate'>
-        {cid.toString()} ({size} bytes)
-      </p>
-    ))}
+    <h1 className='near-white'>UPLOAD COMPLETO!</h1>
+    <p className='near-white'>Partes Divididas ({storedDAGShards.length}):</p>
+    
+
+    <p className='f6 code truncate'>HASH: {dataCid.toString()}</p>
+    <h4><p><a href={`https://LinkDiretoVIP.ZorkyCloudPremium.ga/ipfs/${dataCid}`} className='blue'>Clique aqui e abra a pasta dos arquivos acabados de upar!</a></p></h4>
   </div>
 )
 
